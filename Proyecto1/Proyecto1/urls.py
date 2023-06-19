@@ -15,19 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from Proyecto1.views import saludo
-from Proyecto1.views import segunda_vista
-from Proyecto1.views import miNombrees
-from Proyecto1.views import probandoTemplate
+from django.urls import path,include
+from Proyecto1.views import saludo, segunda_vista,miNombrees,probandoTemplate
+
 urlpatterns = [
+    #path('',saludo),
     path('admin/', admin.site.urls),
     path('saludo/', saludo), #Esto es para traer lo del view
 # La primera parte del path es el nombre, que puede ir cualquiera, la segunda es la funcion que tiene que ir el mismo nombre
     path('segunda_vista/',segunda_vista),
     path('miNombrees/<nombre>',miNombrees), #Con ese '/<Nombre> lo que haces es que cuando pones el URL lo siguiente seria 
                                            #miNombrees/y tu nombre" y ahi te aparece todo el mensaje deseado.
-    path('probandoTemplate/',probandoTemplate)
+    path('probandoTemplate/',probandoTemplate),
+    path('AppCoder/',include('AppCoder.urls'))
 ]
 #Cuando va a produccion todo eso de "path..." se saca. Ya que con eso accedemos al admin
 #Para ingresar a la parte de "saludo" se debe colocar un "/saludo" luego del URL
